@@ -1,0 +1,558 @@
+
+
+ITVGitHub group & user- created secreat key & access key for us
+Provided users to read & write access
+
+S3 policies read & write
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ListObjectsInBucket",
+            "Effect": "Allow",
+            "Action": ["s3:ListBucket"],
+            "Resource": ["arn:aws:s3:::bucket-name"]
+        },
+        {
+            "Sid": "AllObjectActions",
+            "Effect": "Allow",
+            "Action": "s3:*Object",
+            "Resource": ["arn:aws:s3:::bucket-name/*"]
+        }
+    ]
+}
+
+Exit from the current directory
+ cd ~
+shridata@LAPTOP-RN0BE0HM:/mnt/c/Users/shrin$ cd ~
+shridata@LAPTOP-RN0BE0HM:~$
+
+
+shridata@LAPTOP-RN0BE0HM:~$ cd Projects/Internal/bootcamp/data-engineering-on-aws
+shridata@LAPTOP-RN0BE0HM:~/Projects/Internal/bootcamp/data-engineering-on-aws$
+
+how to activate virtual environment
+
+shridata@LAPTOP-RN0BE0HM:~/Projects/Internal/bootcamp/data-engineering-on-aws$ source de-venv/bin/activate
+
+
+(de-venv) shridata@LAPTOP-RN0BE0HM:~/Projects/Internal/bootcamp/data-engineering-on-aws$
+
+deactivate- to terminate virtual environment.
+
+to exit from linux PowerShell to windows PowerShell
+shridata@LAPTOP-RN0BE0HM:~$ exit
+logout
+PS C:\Users\shrin>
+
+AWS Versioning
+It is used to retrieve data when any disaster happens
+AWS S3 cross-region replication
+it is used to retrieve data 
+by copying the same s3 file in a different region
+
+Glacier
+low-cost storage in s3
+
+WSL(windows subsystem of  Linux)
+From aws s3 help if you want to come out use (:Q)
+
+ aws s3 ls s3://dg-retail
+Unable to locate credentials. You can configure credentials by running "aws configure".
+
+aws configure
+
+
+I am pasting My commands here ,
+which I practised
+
+
+On aws command line
+
+PS C:\Users\shrin> aws configure
+AWS Access Key ID [****************RUFZ]:
+AWS Secret Access Key [****************015C]:
+Default region name [us-east-1]:
+Default output format [None]:
+PS C:\Users\shrin> aws s3 ls
+2024-02-05 18:11:25 dg-reatail-us-east-1
+2024-01-22 14:31:14 itv-github-us-east-1
+PS C:\Users\shrin> aws s3 ls dg-reatail-us-east-1
+PS C:\Users\shrin> aws s3 ls dg-reatail-us-east-1
+                           PRE retail_db/
+PS C:\Users\shrin> aws s3 ls dg-reatail-us-east-1 --recursive
+2024-02-06 14:18:26          0 retail_db/
+2024-02-06 14:20:08       1087 retail_db/categories/part-00000
+2024-02-06 14:20:11     966154 retail_db/customers/part-00000
+2024-02-06 14:19:45         66 retail_db/departments/part-00000
+2024-02-06 14:20:00    5581078 retail_db/order_items/part-00000
+2024-02-06 14:20:05    3068827 retail_db/orders/part-00000
+2024-02-06 14:20:07     175500 retail_db/products/part-00000
+PS C:\Users\shrin> aws s3 rm s3://dg-reatail-us-east-1/retail_db/ --recursive
+delete: s3://dg-reatail-us-east-1/retail_db/
+delete: s3://dg-reatail-us-east-1/retail_db/customers/part-00000
+delete: s3://dg-reatail-us-east-1/retail_db/products/part-00000
+delete: s3://dg-reatail-us-east-1/retail_db/order_items/part-00000
+delete: s3://dg-reatail-us-east-1/retail_db/orders/part-00000
+delete: s3://dg-reatail-us-east-1/retail_db/departments/part-00000
+delete: s3://dg-reatail-us-east-1/retail_db/categories/part-00000
+PS C:\Users\shrin> aws s3 cp C:\Users\shrin\Research\data\retail_db\departments s3:\\C:\Users\shrin\Research\data\retail
+_db\departments\\ --recursive
+
+usage: aws s3 cp <LocalPath> <S3Uri> or <S3Uri> <LocalPath> or <S3Uri> <S3Uri>
+Error: Invalid argument type
+PS C:\Users\shrin> aws s3 cp C:\Users\shrin\Research\data\retail_db\departments s3:dg-reatail-us-east-1/retail_db/departments// --recursive
+
+usage: aws s3 cp <LocalPath> <S3Uri> or <S3Uri> <LocalPath> or <S3Uri> <S3Uri>
+Error: Invalid argument type
+PS C:\Users\shrin> aws s3 cp C:/Users/shrin/Research/data/retail_db/departments s3://dg-reatail-us-east-1/retail_db/departments// --recursive
+upload: Research\data\retail_db\departments\part-00000 to s3://dg-reatail-us-east-1/retail_db/departments//part-00000
+PS C:\Users\shrin> aws s3 cp C:/Users/shrin/Research/data/retail_db/categories s3://dg-reatail-us-east-1/retail_db/categories// --recursive
+upload: Research\data\retail_db\categories\part-00000 to s3://dg-reatail-us-east-1/retail_db/categories//part-00000
+PS C:\Users\shrin> aws s3 cp C:/Users/shrin/Research/data/retail_db/products s3://dg-reatail-us-east-1/retail_db/products// --recursive
+upload: Research\data\retail_db\products\part-00000 to s3://dg-reatail-us-east-1/retail_db/products//part-00000
+PS C:\Users\shrin> aws s3 cp C:/Users/shrin/Research/data/retail_db/orders s3://dg-reatail-us-east-1/retail_db/orders// --recursive
+upload: Research\data\retail_db\orders\part-00000 to s3://dg-reatail-us-east-1/retail_db/orders//part-00000
+PS C:\Users\shrin> aws s3 cp C:/Users/shrin/Research/data/retail_db/order_items s3://dg-reatail-us-east-1/retail_db/order_items// --recursive
+upload: Research\data\retail_db\order_items\part-00000 to s3://dg-reatail-us-east-1/retail_db/order_items//part-00000
+PS C:\Users\shrin> aws s3 cp C:/Users/shrin/Research/data/retail_db/order_items s3://dg-reatail-us-east-1/retail_db/order_items// --recursive
+upload: Research\data\retail_db\order_items\part-00000 to s3://dg-reatail-us-east-1/retail_db/order_items//part-00000
+PS C:\Users\shrin> aws s3 cp C:/Users/shrin/Research/data/retail_db/customers s3://dg-reatail-us-east-1/retail_db/customers// --recursive
+upload: Research\data\retail_db\customers\part-00000 to s3://dg-reatail-us-east-1/retail_db/customers//part-00000
+PS C:\Users\shrin> aws s3 ls dg-reatail-us-east-1
+                           PRE retail_db/
+PS C:\Users\shrin> aws s3 ls dg-reatail-us-east-1/retail_db
+                           PRE retail_db/
+PS C:\Users\shrin> aws s3 ls dg-reatail-us-east-1 --recursive
+2024-02-06 14:36:43       1087 retail_db/categories//part-00000
+2024-02-06 14:42:34     966154 retail_db/customers//part-00000
+2024-02-06 14:35:28         66 retail_db/departments//part-00000
+2024-02-06 14:40:39    5581078 retail_db/order_items//part-00000
+2024-02-06 14:37:57    3068827 retail_db/orders//part-00000
+2024-02-06 14:37:20     175500 retail_db/products//part-00000
+
+
+
+
+shridata@LAPTOP-RN0BE0HM:/mnt/c/Users/shrin/Research/data/retail_db$ exit()
+>
+-bash: syntax error: unexpected end of file
+logout
+Logout of Terminal Session: If you're logged into a terminal session, simply type the exit command and press Enter. This will close the terminal session.
+Or simply enter Ctrl+D .
+
+
+how to check hidden items in windows
+PS C:\Users\shrin\Research\data\retail_db> ls
+
+
+    Directory: C:\Users\shrin\Research\data\retail_db
+
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        23-01-2024     11:53                categories
+d-----        23-01-2024     11:53                customers
+d-----        23-01-2024     11:53                departments
+d-----        23-01-2024     11:53                orders
+d-----        23-01-2024     11:53                order_items
+d-----        23-01-2024     11:53                products
+-a----        23-01-2024     11:53       10303495 create_db.sql
+-a----        23-01-2024     11:53           1830 create_db_tables_pg.sql
+-a----        23-01-2024     11:53       10297392 load_db_tables_pg.sql
+-a----        23-01-2024     11:53            826 README.md
+
+
+PS C:\Users\shrin\Research\data\retail_db> ls -altr
+Get-ChildItem : A parameter cannot be found that matches parameter name 'altr'.
+At line:1 char:4
++ ls -altr
++    ~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Get-ChildItem], ParameterBindingException
+    + FullyQualifiedErrorId : NamedParameterNotFound,Microsoft.PowerShell.Commands.GetChildItemCommand
+
+PS C:\Users\shrin\Research\data\retail_db> get-childitem -force
+
+
+    Directory: C:\Users\shrin\Research\data\retail_db
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d--h--        23-01-2024     11:53                .git
+d-----        23-01-2024     11:53                categories
+d-----        23-01-2024     11:53                customers
+d-----        23-01-2024     11:53                departments
+d-----        23-01-2024     11:53                orders
+d-----        23-01-2024     11:53                order_items
+d-----        23-01-2024     11:53                products
+-a----        23-01-2024     11:53       10303495 create_db.sql
+-a----        23-01-2024     11:53           1830 create_db_tables_pg.sql
+-a----        23-01-2024     11:53       10297392 load_db_tables_pg.sql
+-a----        23-01-2024     11:53            826 README.md
+
+In linux
+shridata@LAPTOP-RN0BE0HM:/mnt/c/Users/shrin/Research/data/retail_db$ ls -altr
+total 20132
+drwxrwxrwx 1 shridata shridata     4096 Jan 23 11:52 ..
+drwxrwxrwx 1 shridata shridata     4096 Jan 23 11:53 categories
+-rwxrwxrwx 1 shridata shridata      826 Jan 23 11:53 README.md
+drwxrwxrwx 1 shridata shridata     4096 Jan 23 11:53 departments
+drwxrwxrwx 1 shridata shridata     4096 Jan 23 11:53 customers
+-rwxrwxrwx 1 shridata shridata     1830 Jan 23 11:53 create_db_tables_pg.sql
+-rwxrwxrwx 1 shridata shridata 10303495 Jan 23 11:53 create_db.sql
+-rwxrwxrwx 1 shridata shridata 10297392 Jan 23 11:53 load_db_tables_pg.sql
+drwxrwxrwx 1 shridata shridata     4096 Jan 23 11:53 order_items
+drwxrwxrwx 1 shridata shridata     4096 Jan 23 11:53 orders
+drwxrwxrwx 1 shridata shridata     4096 Jan 23 11:53 products
+drwxrwxrwx 1 shridata shridata     4096 Jan 23 11:53 .git
+drwxrwxrwx 1 shridata shridata     4096 Jan 23 11:53 .
+shridata@LAPTOP-RN0BE0HM:/mnt/c/Users/shrin/Research/data/retail_db$ rm -rf .git
+shridata@LAPTOP-RN0BE0HM:/mnt/c/Users/shrin/Research/data/retail_db$
+
+
+Copying local folder/files in s3 using command line
+ aws s3 cp /mnt/c/Users/shrin/Research/data/retail_db s3://dg-reatail-us-east-1/retail_db/ --recursive --exclude "*.sql" --exclude "README.md"
+excluding unnecessary files.
+
+
+
+PS C:\Users\shrin> aws s3 ls dg-reatail-us-east-1 --recursive --profile itvsupport2
+
+ aws s3 cp C:\Users\shrin\Research\data\retail_db s3://dg-reatail-us-east-1/retail_db/ --recursive --exclude "*.sql" --exclude "README.md" --profile awsdemo
+upload: Research\data\retail_db\categories\part-00000 to s3://dg-reatail-us-east-1/retail_db/categories/part-00000
+upload: Research\data\retail_db\departments\part-00000 to s3://dg-reatail-us-east-1/retail_db/departments/part-00000
+upload: Research\data\retail_db\products\part-00000 to s3://dg-reatail-us-east-1/retail_db/products/part-00000
+upload: Research\data\retail_db\customers\part-00000 to s3://dg-reatail-us-east-1/retail_db/customers/part-00000
+upload: Research\data\retail_db\orders\part-00000 to s3://dg-reatail-us-east-1/retail_db/orders/part-00000
+upload: Research\data\retail_db\order_items\part-00000 to s3://dg-reatail-us-east-1/retail_db/order_items/part-00000
+shridata@LAPTOP-RN0BE0HM:/mnt/c/Users/shrin/downloads$ mv ~/Downloads/itvdemo.pem /home/shridata/.ssh/
+mv: cannot stat '/home/shridata/Downloads/itvdemo.pem': No such file or directory
+shridata@LAPTOP-RN0BE0HM:/mnt/c/Users/shrin/downloads$ mv ~/itvdemo.pem /home/shridata/.ssh/
+shridata@LAPTOP-RN0BE0HM:/mnt/c/Users/shrin/downloads$ chmod 600 ~/.ssh/itvdemo.pem
+shridata@LAPTOP-RN0BE0HM:/mnt/c/Users/shrin/downloads$ ssh -i ~/.ssh/itvdemo.pem ec2-user@ec2-34-224-72-241.compute-1.amazonaws.com
+The authenticity of host 'ec2-34-224-72-241.compute-1.amazonaws.com (34.224.72.241)' can't be established.
+
+
+
+ED25519 key fingerprint is SHA256:a0FhdkXr/Ic5zANG9EWHM8K2OCg9Yk0IISigIBP+qVs.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? y
+Please type 'yes', 'no' or the fingerprint: yes
+Warning: Permanently added 'ec2-34-224-72-241.compute-1.amazonaws.com' (ED25519) to the list of known hosts.
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+
+[ec2-user@ip-172-31-24-39 ~]$ aws s3 rm s3://dg-reatail-us-east-1/awsdemo_credentials.csv
+delete failed: s3://dg-reatail-us-east-1/awsdemo_credentials.csv An error occurred (AccessDenied) when calling the DeleteObject operation: Access Denied
+Since it has only read & write access
+
+
+[ec2-user@ip-172-31-24-39 ~]$ aws s3 ls dg-reatail-us-east-1
+2024-02-12 07:36:15        118 awsdemo_credentials.csv
+
+Even its support but appliying policies we can get the read & upload access to it.
+
+this helps to access to one folder.
+
+C:\Users\shrin> aws s3 cp C:\Users\shrin\Research\data\retail_db s3://dg-reatail-us-east-1/retail_db/ --recursive --exclude "*.sql" --exclude "README.md" --profile itvsupport2
+
+C:\Users\shrin> aws s3 ls dg-reatail-us-east-1 --recursive --profile itvsupport2
+2024-02-12 13:06:15        118 awsdemo_credentials.csv
+2024-02-12 14:25:15     966154 retail_db/customers/part-00000
+2024-02-12 14:25:15     175500 retail_db/products/part-00000
+
+C:\Users\shrin>aws iam list-users --profile awsdemo
+{
+    "Users": [
+        {
+            "Path": "/",
+            "UserName": "awsdemo",
+            "UserId": "AIDAZPUCFCVCAXFRIONHG",
+            "Arn": "arn:aws:iam::652034250052:user/awsdemo",
+            "CreateDate": "2024-01-17T10:30:23+00:00",
+            "PasswordLastUsed": "2024-02-07T06:12:22+00:00"
+        },
+        {
+            "Path": "/",
+            "UserName": "ITVCloud9User",
+            "UserId": "AIDAZPUCFCVCLRIJQ7KOX",
+            "Arn": "arn:aws:iam::652034250052:user/ITVCloud9User",
+            "CreateDate": "2024-01-18T07:31:26+00:00",
+            "PasswordLastUsed": "2024-02-06T10:58:51+00:00"
+        },
+        {
+            "Path": "/",
+            "UserName": "ITVGitHubUser",
+            "UserId": "AIDAZPUCFCVCEK4GC7GCT",
+            "Arn": "arn:aws:iam::652034250052:user/ITVGitHubUser",
+            "CreateDate": "2024-01-22T09:12:37+00:00"
+        },
+        {
+            "Path": "/",
+            "UserName": "itvsupport2",
+            "UserId": "AIDAZPUCFCVCEVDXDAJ5F",
+            "Arn": "arn:aws:iam::652034250052:user/itvsupport2",
+            "CreateDate": "2024-02-07T06:13:18+00:00"
+        }
+    ]
+}
+
+Groups
+
+C:\Users\shrin>aws iam list-groups --profile awsdemo
+{
+    "Groups": [
+        {
+            "Path": "/",
+            "GroupName": "itvadmin",
+            "GroupId": "AGPAZPUCFCVCLFGSMXH6P",
+            "Arn": "arn:aws:iam::652034250052:group/itvadmin",
+            "CreateDate": "2024-02-07T07:17:13+00:00"
+        },
+        {
+            "Path": "/",
+            "GroupName": "ITVCloud9",
+            "GroupId": "AGPAZPUCFCVCK77XIHFO2",
+            "Arn": "arn:aws:iam::652034250052:group/ITVCloud9",
+            "CreateDate": "2024-01-18T07:25:19+00:00"
+        },
+        {
+            "Path": "/",
+            "GroupName": "ITVGitHubGroup",
+            "GroupId": "AGPAZPUCFCVCIFGXGK3I3",
+            "Arn": "arn:aws:iam::652034250052:group/ITVGitHubGroup",
+            "CreateDate": "2024-01-22T09:08:21+00:00"
+        },
+        {
+            "Path": "/",
+            "GroupName": "itvsupport",
+            "GroupId": "AGPAZPUCFCVCHZ2EZDEH6",
+            "Arn": "arn:aws:iam::652034250052:group/itvsupport",
+            "CreateDate": "2024-02-07T07:17:53+00:00"
+        }
+    ]
+}
+
+
+Group
+C:\Users\shrin>aws iam get-group --group-name itvadmin --profile awsdemo
+{
+    "Users": [
+        {
+            "Path": "/",
+            "UserName": "awsdemo",
+            "UserId": "AIDAZPUCFCVCAXFRIONHG",
+            "Arn": "arn:aws:iam::652034250052:user/awsdemo",
+            "CreateDate": "2024-01-17T10:30:23+00:00",
+            "PasswordLastUsed": "2024-02-07T06:12:22+00:00"
+        },
+        {
+            "Path": "/",
+            "UserName": "ITVGitHubUser",
+            "UserId": "AIDAZPUCFCVCEK4GC7GCT",
+            "Arn": "arn:aws:iam::652034250052:user/ITVGitHubUser",
+            "CreateDate": "2024-01-22T09:12:37+00:00"
+        }
+    ],
+    "Group": {
+        "Path": "/",
+        "GroupName": "itvadmin",
+        "GroupId": "AGPAZPUCFCVCLFGSMXH6P",
+        "Arn": "arn:aws:iam::652034250052:group/itvadmin",
+        "CreateDate": "2024-02-07T07:17:13+00:00"
+    }
+}
+
+user policies
+C:\Users\shrin>aws iam list-policies --scope Local --profile awsdemo
+{
+    "Policies": [
+        {
+            "PolicyName": "ITVGitHubS3FullPolicy",
+            "PolicyId": "ANPAZPUCFCVCAOBNELVOE",
+            "Arn": "arn:aws:iam::652034250052:policy/ITVGitHubS3FullPolicy",
+            "Path": "/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 1,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2024-01-22T09:43:23+00:00",
+            "UpdateDate": "2024-01-22T09:43:23+00:00"
+        },
+        {
+            "PolicyName": "AWSGlueServiceRole-default-EZCRC-s3Policy",
+            "PolicyId": "ANPAZPUCFCVCAVLV76XIR",
+            "Arn": "arn:aws:iam::652034250052:policy/service-role/AWSGlueServiceRole-default-EZCRC-s3Policy",
+            "Path": "/service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 1,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2023-11-10T13:43:29+00:00",
+            "UpdateDate": "2023-11-10T13:43:29+00:00"
+        },
+        {
+            "PolicyName": "AWSAthenaSparkDemoPolicy-cw0v2n69xd",
+            "PolicyId": "ANPAZPUCFCVCC2G6INNRQ",
+            "Arn": "arn:aws:iam::652034250052:policy/service-role/AWSAthenaSparkDemoPolicy-cw0v2n69xd",
+            "Path": "/service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 1,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2023-11-10T13:49:07+00:00",
+            "UpdateDate": "2023-11-10T13:49:07+00:00"
+        },
+        {
+            "PolicyName": "AWSAthenaSparkRolePolicy-cw0v2n69xd",
+            "PolicyId": "ANPAZPUCFCVCFPBZJMN63",
+            "Arn": "arn:aws:iam::652034250052:policy/service-role/AWSAthenaSparkRolePolicy-cw0v2n69xd",
+            "Path": "/service-role/",
+            "DefaultVersionId": "v1",
+            "AttachmentCount": 1,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2023-11-10T13:49:07+00:00",
+            "UpdateDate": "2023-11-10T13:49:07+00:00"
+        },
+        {
+            "PolicyName": "ITVsupportS3RetailDBAll",
+            "PolicyId": "ANPAZPUCFCVCISYX6WIBC",
+            "Arn": "arn:aws:iam::652034250052:policy/ITVsupportS3RetailDBAll",
+            "Path": "/",
+            "DefaultVersionId": "v2",
+            "AttachmentCount": 1,
+            "PermissionsBoundaryUsageCount": 0,
+            "IsAttachable": true,
+            "CreateDate": "2024-02-12T08:42:57+00:00",
+            "UpdateDate": "2024-02-12T08:55:07+00:00"
+        }
+    ]
+}
+
+
+Add user & also to group
+C:\Users\shrin>aws iam add-user-to-group --group-name itvsupport --user-name itvsupport3 --profile itvadmin
+
+C:\Users\shrin>aws iam get-group --group-name itvsupport --profile awsdemo
+{
+    "Users": [
+        {
+            "Path": "/",
+            "UserName": "itvsupport2",
+            "UserId": "AIDAZPUCFCVCEVDXDAJ5F",
+            "Arn": "arn:aws:iam::652034250052:user/itvsupport2",
+            "CreateDate": "2024-02-07T06:13:18+00:00"
+        },
+        {
+            "Path": "/",
+            "UserName": "itvsupport3",
+            "UserId": "AIDAZPUCFCVCFXY44E44F",
+            "Arn": "arn:aws:iam::652034250052:user/itvsupport3",
+            "CreateDate": "2024-02-12T09:28:44+00:00"
+
+Remove from the groups & deleting it
+C:\Users\shrin>aws iam delete --user-name itvsupport3 --profile awsdemo
+C:\Users\shrin>aws iam delete-user --user-name itvsupport3 --profile awsdemo
+
+
+
+EC2 Instances
+
+shridata@LAPTOP-RN0BE0HM:/mnt/c/Users/shrin$ ssh -i ~/.ssh/itvdemo1.pem ubuntu@ec2-52-201-233-231.compute-1.amazonaws.co
+m
+Last login: Wed Feb 14 06:48:10 2024 from 223.233.84.106 not a IST
+ubuntu@ip-172-31-83-219:~$ exit
+logout
+Connection to ec2-52-201-233-231.compute-1.amazonaws.com closed.
+ubuntu@ip-172-31-83-219:~$ hostname -f
+ip-172-31-83-219.ec2.internal
+ubuntu@ip-172-31-83-219:~$ uname -a
+Linux ip-172-31-83-219 6.2.0-1017-aws #17~22.04.1-Ubuntu SMP Fri Nov 17 21:07:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+ubuntu@ip-172-31-83-219:~$ exit
+logout
+shridata@LAPTOP-RN0BE0HM:/mnt/c/Users/shrin$ hostname -f
+LAPTOP-RN0BE0HM.
+
+
+
+shridata@LAPTOP-RN0BE0HM:/mnt/c/Users/shrin$
+
+ ssh -i ~/.ssh/itvdemo1.pem ubuntu@ec2-52-201-233-231.compute-1.amazonaws.com
+^C
+Since security group is deleted it cannot allow inbound traffic to it
+
+Once created security group ssh, we can run it
+
+
+
+Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 6.2.0-1017-aws x86_64)
+
+sudo apt update ------- update the ubuntu kernel
+
+sudo apt install -y apache2
+
+
+Let's break down the command:
+• sudo: This command is used to execute the subsequent command with superuser (administrative) privileges. It allows the user to perform tasks that require elevated permissions.
+• apt: This is the package management tool used in Debian-based Linux distributions (such as Ubuntu). It is used to install, update, and manage software packages.
+• install: This is an apt subcommand used to install new software packages.
+• -y: This option is used to automatically answer "yes" to any prompts that the apt command may display during the installation process. It is typically used for unattended installations where manual intervention is not desired.
+• apache2: This is the name of the package that you want to install. In this case, it refers to the Apache HTTP Server, which is a popular web server software used to serve web content over the internet.
+So, when you run sudo apt install -y apache2, you are instructing the system to install the Apache HTTP Server without prompting for confirmation, and the installation process will be executed with superuser privileges.
+
+ :~$ sudo systemctl status apache2
+
+systemctl: This is the command-line interface for controlling systemd, which is the init system used by modern Linux distributions. It is used to manage system services.
+
+
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2024-02-14 07:32:37 UTC; 3min 58s ago
+       Docs: https://httpd.apache.org/docs/2.4/
+   Main PID: 2556 (apache2)
+      Tasks: 55 (limit: 1121)
+     Memory: 4.8M
+        CPU: 43ms
+     CGroup: /system.slice/apache2.service
+             ├─2556 /usr/sbin/apache2 -k start
+             ├─2558 /usr/sbin/apache2 -k start
+             └─2559 /usr/sbin/apache2 -k start
+
+Feb 14 07:32:37 ip-172-31-83-219 systemd[1]: Starting The Apache HTTP Server...
+Feb 14 07:32:37 ip-172-31-83-219 systemd[1]: Started The Apache HTTP Server.
+
+ telnet localhost 80
+• telnet: This is the command-line tool used to establish interactive TCP connections to remote servers or services. It is commonly used for testing network connectivity and troubleshooting.
+• localhost: This is a hostname that refers to the local machine, typically represented by the loopback IP address 127.0.0.1. When you specify "localhost" as the host to connect to, you are telling Telnet to connect to a service running on the same machine.
+• 80: This is the port number that Telnet will attempt to connect to on the specified host. Port 80 is the default port used for HTTP (Hypertext Transfer Protocol) communication, commonly used for serving web pages over the internet.
+
+
+shridata@LAPTOP-RN0BE0HM:/mnt/c/Users/shrin$ telnet ec2-52-201-233-231.compute-1.amazonaws.com 80
+Trying 52.201.233.231...
+
+it will just hang due to scurity groups are not defined
+
+
+Lets try with browser
+hanging
+
+Need to be chage security groups
+Changed it into local http port 80
+shridata@LAPTOP-RN0BE0HM:/mnt/c/Users/shrin$ telnet ec2-52-201-233-231.compute-1.amazonaws.com 80
+Trying 52.201.233.231...
+Connected to ec2-52-201-233-231.compute-1.amazonaws.com.
+Escape character is '^]'.
+
+In browser
+
