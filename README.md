@@ -18,7 +18,7 @@ File Structure
 ├── notebooks
 │   └── Order Data Analysis.ipynb      # Jupyter Notebook containing the Python code for ETL
 ├── sql
-│   └── database_schema.sql      # SQL script to create tables and schemas in SQL Server
+│   └── SQLQuery1.sql      # SQL script to create tables and schemas in SQL Server
 ├── README.md                    # Project documentation
 
 Prerequisites
